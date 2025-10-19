@@ -1,0 +1,97 @@
+-- ตัวอย่างโครงสร้างตารางที่ระบบใช้งาน
+-- (กรณีที่ต้องการสร้างตารางใหม่)
+
+-- ตาราง tb_employees
+CREATE TABLE IF NOT EXISTS tb_employees (
+    i_EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
+    c_FirstName VARCHAR(50) NOT NULL,
+    c_LastName VARCHAR(50) NOT NULL,
+    c_Title VARCHAR(50),
+    c_Address VARCHAR(100),
+    c_City VARCHAR(50),
+    c_Country VARCHAR(50)
+);
+
+-- ตาราง tb_customers
+CREATE TABLE IF NOT EXISTS tb_customers (
+    i_CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    c_CompanyName VARCHAR(100) NOT NULL,
+    c_ContactName VARCHAR(50),
+    c_Address VARCHAR(100),
+    c_City VARCHAR(50),
+    c_Country VARCHAR(50),
+    c_Phone VARCHAR(20)
+);
+
+-- ตาราง tb_suppliers
+CREATE TABLE IF NOT EXISTS tb_suppliers (
+    i_SupplierID INT PRIMARY KEY AUTO_INCREMENT,
+    c_CompanyName VARCHAR(100) NOT NULL,
+    c_ContactName VARCHAR(50),
+    c_Address VARCHAR(100),
+    c_City VARCHAR(50),
+    c_Country VARCHAR(50),
+    c_Phone VARCHAR(20)
+);
+
+-- ตาราง tb_products
+CREATE TABLE IF NOT EXISTS tb_products (
+    i_ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    c_ProductName VARCHAR(100) NOT NULL,
+    i_SupplierID INT,
+    i_CategoryID INT,
+    i_Price DECIMAL(10,2) NOT NULL,
+    i_UnitsInStock INT DEFAULT 0,
+    FOREIGN KEY (i_SupplierID) REFERENCES tb_suppliers(i_SupplierID)
+);
+
+-- ตาราง tb_orders
+CREATE TABLE IF NOT EXISTS tb_orders (
+    i_OrderID INT PRIMARY KEY,
+    i_EmployeeID INT NOT NULL,
+    i_CustomerID INT NOT NULL,
+    i_SupplierID INT NOT NULL,
+    c_OrderDate DATE NOT NULL,
+    FOREIGN KEY (i_EmployeeID) REFERENCES tb_employees(i_EmployeeID),
+    FOREIGN KEY (i_CustomerID) REFERENCES tb_customers(i_CustomerID),
+    FOREIGN KEY (i_SupplierID) REFERENCES tb_suppliers(i_SupplierID)
+);
+
+-- ตาราง tb_orderdetails
+CREATE TABLE IF NOT EXISTS tb_orderdetails (
+    i_OrderDetailID INT PRIMARY KEY AUTO_INCREMENT,
+    i_OrderID INT NOT NULL,
+    i_ProductID INT NOT NULL,
+    i_Quantity INT NOT NULL,
+    FOREIGN KEY (i_OrderID) REFERENCES tb_orders(i_OrderID) ON DELETE CASCADE,
+    FOREIGN KEY (i_ProductID) REFERENCES tb_products(i_ProductID)
+);
+
+-- ตัวอย่างข้อมูลทดสอบ
+INSERT INTO tb_employees (c_FirstName, c_LastName, c_Title) VALUES
+('สมชาย', 'ใจดี', 'Sales Manager'),
+('สมหญิง', 'รักงาน', 'Sales Representative'),
+('ธนพล', 'เข้มแข็ง', 'Sales Representative'),
+('ปรียา', 'สวยงาม', 'Sales Representative'),
+('วัฒนา', 'มุ่งมั่น', 'Sales Assistant');
+
+INSERT INTO tb_customers (c_CompanyName, c_ContactName, c_City) VALUES
+('บริษัท ABC จำกัด', 'นายสมศักดิ์', 'กรุงเทพฯ'),
+('บริษัท XYZ จำกัด', 'นางสาวสมใจ', 'เชียงใหม่'),
+('บริษัท DEF จำกัด', 'นายวัฒนา', 'กรุงเทพฯ'),
+('บริษัท GHI จำกัด', 'นางสาวปรียา', 'เชียงใหม่'),
+('บริษัท JKL จำกัด', 'นายธนพล', 'กรุงเทพฯ');
+
+INSERT INTO tb_suppliers (c_CompanyName, c_ContactName, c_City) VALUES
+('Kerry Express', 'นายเคอรี่', 'กรุงเทพฯ'),
+('Flash Express', 'นายแฟลช', 'กรุงเทพฯ'),
+('SCG Logistics', 'นางสาวเอสซีจี', 'กรุงเทพฯ'),
+('J&T Express', 'นายเจแอนด์ที', 'เชียงใหม่'),
+('DHL Express', 'นายดีเอชแอล', 'กรุงเทพฯ');
+
+
+INSERT INTO tb_products (c_ProductName, i_Price, i_UnitsInStock) VALUES
+('โน๊ตบุ๊ค Dell Latitude', 25000.00, 10),
+('เมาส์ Logitech', 590.00, 50),
+('คีย์บอร์ด Mechanical', 2500.00, 30),
+('จอมอนิเตอร์ 27 นิ้ว', 8900.00, 15);

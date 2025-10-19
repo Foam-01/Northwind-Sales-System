@@ -1,0 +1,240 @@
+/* Central theme for Northwind Sales
+   Variables, layout, and common components
+*/
+/* Modern color palette and accent */
+:root {
+    --primary-color: #185a9d;
+    --secondary-color: #3498db;
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --warning-color: #f1c40f;
+    --accent-gradient: linear-gradient(135deg, #e3f0ff 0%, #b3d8fd 100%);
+    --accent-gradient-2: linear-gradient(135deg, #3498db 0%, #185a9d 100%);
+    --card-bg: #fafdff;
+    --glass-bg: rgba(255,255,255,0.97);
+    --shadow-lg: 0 10px 40px rgba(24,90,157,0.10);
+    --shadow-md: 0 4px 16px rgba(52,152,219,0.10);
+    --border-radius: 18px;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html,body { height:100%; }
+body {
+    background: var(--accent-gradient);
+    min-height: 100vh;
+    font-family: var(--font-main);
+    margin: 0;
+    color: var(--primary-color);
+    -webkit-font-smoothing:antialiased;
+}
+.container.main-container {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    max-width: 1100px;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    padding: 0.5rem 0;
+}
+.navbar .navbar-brand {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(24,90,157,0.08);
+}
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: var(--secondary-color) !important;
+    border-bottom: 2.5px solid var(--secondary-color);
+    background: rgba(52,152,219,0.10);
+    border-radius: 0 0 8px 8px;
+}
+
+/* Card */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    background: var(--card-bg);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+    box-shadow: 0 16px 48px rgba(24,90,157,0.13);
+    transform: translateY(-2px) scale(1.01);
+}
+.card-header {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: #fff;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    padding: 22px 24px 18px 24px;
+    font-size: 1.18rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(24,90,157,0.07);
+}
+
+/* Tables */
+.table { margin-bottom: 0; }
+.table thead th {
+    background: linear-gradient(135deg, #e3f0ff 0%, #b3d8fd 100%);
+    color: var(--primary-color);
+    font-weight: 600;
+    border: none;
+    padding: 15px;
+    vertical-align: middle;
+}
+.table tbody tr { transition: all 0.22s cubic-bezier(.4,0,.2,1); }
+.table tbody tr:hover {
+    background: #e3f0ff;
+    transform: scale(1.012);
+    box-shadow: 0 2px 12px rgba(52,152,219,0.08);
+}
+.table tfoot { background: linear-gradient(135deg, #b3d8fd, #3498db); color: var(--primary-color); font-weight: bold; }
+.table tfoot td { padding: 15px; font-size: 1.05rem; }
+
+/* Buttons */
+.btn-primary {
+    background: var(--secondary-color);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+    transition: all 0.18s cubic-bezier(.4,0,.2,1);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background: #185a9d;
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(24,90,157,0.18);
+}
+.btn-info {
+    background: #e3f0ff;
+    border: none;
+    color: var(--primary-color);
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.18s;
+}
+.btn-info:hover {
+    background: #b3d8fd;
+    color: var(--primary-color);
+    box-shadow: 0 4px 16px rgba(52,152,219,0.13);
+}
+.btn-warning {
+    background: var(--warning-color);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    font-weight: 500;
+}
+.btn-danger {
+    background: var(--danger-color);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 500;
+}
+.btn-success {
+    background: var(--success-color);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Form labels */
+.form-label { font-weight: 600; color: var(--primary-color); }
+.required::after { content: ' *'; color: var(--danger-color); }
+
+/* Components */
+
+/* Stats Card Modern */
+.stats-card {
+    background: var(--accent-gradient-2);
+    color: #fff;
+    border-radius: var(--border-radius);
+    padding: 28px 24px 18px 24px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+.stats-card:after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    z-index: 0;
+}
+.stats-card h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+}
+.stats-card p {
+    margin: 0;
+    opacity: 0.93;
+    font-size: 1.08rem;
+    position: relative;
+    z-index: 1;
+}
+
+.info-badge, .info-section {
+    background: var(--accent-gradient);
+    color: var(--primary-color);
+    padding: 22px 20px 16px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 18px;
+}
+
+.summary-box {
+    background: linear-gradient(135deg, #b3d8fd, #3498db);
+    color: var(--primary-color);
+    padding: 24px 20px 16px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 18px;
+    font-size: 1.13rem;
+}
+
+.product-row {
+    background: #e3f0ff;
+    padding: 16px 12px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    border: 1.5px solid #b3d8fd;
+    transition: box-shadow 0.18s, border-color 0.18s;
+}
+.product-row:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 6px 18px rgba(52,152,219,0.10);
+}
+
+/* Utility */
+.text-success { color: #27ae60 !important; }
+.badge.bg-info { background: #b3d8fd !important; color: var(--primary-color); }
+.badge.bg-primary { background: var(--primary-color) !important; color: #fff; }
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+    .card-header { padding: 12px 10px 10px 10px; font-size: 1.01rem; }
+    .stats-card h3 { font-size: 1.35rem; }
+    .container.main-container { padding-left: 2px; padding-right: 2px; }
+}
