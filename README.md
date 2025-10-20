@@ -65,22 +65,7 @@ Open the app in your browser:
 http://localhost/Northwind-Sales-System/
 
 
-📝 Contributing
 
-We welcome contributions! Follow these steps:
-
-# Fork the repository
-
-# Create your feature branch
-git checkout -b feature/YourFeature
-
-# Commit your changes
-git commit -m "Add some feature"
-
-# Push to your branch
-git push origin feature/YourFeature
-
-# Open a Pull Request
 
 
 
